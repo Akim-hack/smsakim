@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,8 +34,20 @@ public class MainActivity extends AppCompatActivity {
                                 Manifest.permission.READ_SMS
                         }, CODE_PERMISSION);
             } else {
-                Toast.makeText(this, "Permissions SMS accordees", Toast.LENGTH_SHORT).show();
+                demarrerService();
+                Toast.makeText(this, "Service SMS demarre", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            demarrerService();
+        }
+    }
+
+    private void demarrerService() {
+        try {
+            Intent intent = new Intent(this, SmsWatcherService.class);
+            startService(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -46,8 +59,12 @@ public class MainActivity extends AppCompatActivity {
             for (int r : grantResults) {
                 if (r != PackageManager.PERMISSION_GRANTED) { ok = false; break; }
             }
-            Toast.makeText(this, ok ? "Permissions accordees" : "Autorise les SMS !",
-                    Toast.LENGTH_LONG).show();
+            if (ok) {
+                demarrerService();
+                Toast.makeText(this, "Permissions accordees", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Autorise les SMS !", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
