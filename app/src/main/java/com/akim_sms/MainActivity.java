@@ -22,10 +22,23 @@ public class MainActivity extends AppCompatActivity {
         txtStatus = findViewById(R.id.txt_status);
         txtStatusIcon = findViewById(R.id.txt_status_icon);
 
+        // BOUTON GIGA BOOST — vérifie d'abord les notifications
         Button btnSim = findViewById(R.id.btn_simulateur);
         btnSim.setOnClickListener(v -> {
-            Intent i = new Intent(MainActivity.this, SimulateurActivity.class);
-            startActivity(i);
+            if (estAutorise()) {
+                Intent i = new Intent(MainActivity.this, SimulateurActivity.class);
+                startActivity(i);
+            } else {
+                Toast.makeText(MainActivity.this,
+                        "⚠️ Autorise d'abord les notifications !",
+                        Toast.LENGTH_LONG).show();
+                try {
+                    Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         });
 
         Button btnActiver = findViewById(R.id.btn_activer);
