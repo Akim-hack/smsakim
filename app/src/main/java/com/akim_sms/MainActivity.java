@@ -3,7 +3,6 @@ package com.akim_sms;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Button;
@@ -23,14 +22,12 @@ public class MainActivity extends AppCompatActivity {
         txtStatus = findViewById(R.id.txt_status);
         txtStatusIcon = findViewById(R.id.txt_status_icon);
 
-        // Bouton simulateur
         Button btnSim = findViewById(R.id.btn_simulateur);
         btnSim.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, SimulateurActivity.class);
             startActivity(i);
         });
 
-        // Bouton activer notifications
         Button btnActiver = findViewById(R.id.btn_activer);
         btnActiver.setOnClickListener(v -> {
             try {
@@ -38,17 +35,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             } catch (Exception e) {
                 Toast.makeText(this, "Erreur", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Bouton site web
-        Button btnSite = findViewById(R.id.btn_site);
-        btnSite.setOnClickListener(v -> {
-            try {
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://akimsms.netlify.app/"));
-                startActivity(i);
-            } catch (Exception e) {
-                Toast.makeText(this, "Impossible d'ouvrir le site", Toast.LENGTH_SHORT).show();
             }
         });
 
