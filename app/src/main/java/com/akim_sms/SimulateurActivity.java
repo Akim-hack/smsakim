@@ -1,5 +1,6 @@
 package com.akim_sms;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -9,25 +10,43 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SimulateurActivity extends AppCompatActivity {
 
+    private WebView webView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        WebView webView = new WebView(this);
+        try {
+            webView = new WebView(this);
 
-        WebSettings settings = webView.getSettings();
-        settings.setJavaScriptEnabled(true);
-        settings.setDomStorageEnabled(true);
-        settings.setAllowFileAccess(true);
-        settings.setLoadWithOverviewMode(true);
-        settings.setUseWideViewPort(true);
-        settings.setBuiltInZoomControls(false);
+            WebSettings settings = webView.getSettings();
+            settings.setJavaScriptEnabled(true);
+            settings.setDomStorageEnabled(true);
+            settings.setAllowFileAccess(true);
+            settings.setAllowContentAccess(true);
+            settings.setLoadWithOverviewMode(true);
+            settings.setUseWideViewPort(true);
+            settings.setBuiltInZoomControls(false);
+            settings.setDisplayZoomControls(false);
 
-        webView.setWebViewClient(new WebViewClient());
-        webView.setBackgroundColor(0xFF0A0E1A);
+            webView.setWebViewClient(new WebViewClient());
+            webView.setBackgroundColor(0xFF0A0E1A);
 
-        webView.loadUrl("file:///android_asset/simulateur.html");
+            webView.loadUrl("file:///android_asset/simulateur.html");
 
-        setContentView(webView);
+            setContentView(webView);
+        } catch (Exception e) {
+            e.printStackTrace();
+            finish();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webView != null && webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
