@@ -44,7 +44,7 @@
                     style="@style/TitleApp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SMS Akim"
+                    android:text="SIM CRACK"
                     android:textSize="22sp" />
 
                 <TextView
@@ -188,7 +188,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Akim"
+                    android:text="CHAT NOIR"
                     android:textColor="@color/text_primary"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -220,7 +220,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="⚠️ Usage personnel uniquement"
+            android:text="🌟CHAT 🐈 NOIR"
             android:textColor="@color/text_tertiary"
             android:textSize="11sp"
             android:gravity="center"
