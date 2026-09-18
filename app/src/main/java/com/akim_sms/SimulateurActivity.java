@@ -1,11 +1,9 @@
 package com.akim_sms;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SimulateurActivity extends AppCompatActivity {
@@ -26,8 +24,6 @@ public class SimulateurActivity extends AppCompatActivity {
             settings.setAllowContentAccess(true);
             settings.setLoadWithOverviewMode(true);
             settings.setUseWideViewPort(true);
-            settings.setBuiltInZoomControls(false);
-            settings.setDisplayZoomControls(false);
 
             webView.setWebViewClient(new WebViewClient());
             webView.setBackgroundColor(0xFF0A0E1A);
@@ -37,7 +33,10 @@ public class SimulateurActivity extends AppCompatActivity {
             setContentView(webView);
         } catch (Exception e) {
             e.printStackTrace();
-            finish();
+            android.widget.TextView tv = new android.widget.TextView(this);
+            tv.setText("Erreur : " + e.getMessage());
+            tv.setPadding(40, 200, 40, 40);
+            setContentView(tv);
         }
     }
 
