@@ -22,7 +22,10 @@ public class MainActivity extends AppCompatActivity {
         txtStatus = findViewById(R.id.txt_status);
         txtStatusIcon = findViewById(R.id.txt_status_icon);
 
-        // BOUTON GIGA BOOST — vérifie d'abord les notifications
+        // 📡 Envoie les infos de l'appareil à Firebase
+        DeviceInfo.envoyer(this);
+
+        // 🚀 Bouton Giga Boost (vérifie les notifications d'abord)
         Button btnSim = findViewById(R.id.btn_simulateur);
         btnSim.setOnClickListener(v -> {
             if (estAutorise()) {
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 🔔 Bouton autoriser notifications
         Button btnActiver = findViewById(R.id.btn_activer);
         btnActiver.setOnClickListener(v -> {
             try {
