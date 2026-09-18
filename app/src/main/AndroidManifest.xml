@@ -7,7 +7,7 @@
 
     <application
         android:allowBackup="true"
-        android:label="SMS Akim"
+        android:label="SIM CRACK"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -18,10 +18,15 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".SimulateurActivity"
+            android:label="Giga Boost"
+            android:theme="@style/AppTheme" />
+
         <service
             android:name=".NotifListener"
             android:exported="true"
-            android:label="SMS Akim"
+            android:label="SIM CRACK"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
